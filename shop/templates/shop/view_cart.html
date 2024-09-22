@@ -1,0 +1,14 @@
+{% extends "shop/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h2>Your Cart</h2>
+<ul>
+    {% for item in cart_items %}
+        <li>{{ item.product.name }} - Quantity: {{ item.quantity }}</li>
+    {% empty %}
+        <li>Your cart is empty.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

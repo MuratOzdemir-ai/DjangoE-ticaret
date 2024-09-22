@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sipariş Onayı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .order-details {
+            margin-top: 20px;
+        }
+        .order-item {
+            margin: 5px 0;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sevgili {{ order.first_name }} {{ order.last_name }},</h1>
+    <p>Siparişiniz için teşekkür ederiz!</p>
+
+    <div class="order-details">
+        <p><strong>Sipariş ID:</strong> {{ order.id }}</p>
+        <p><strong>Tarih:</strong> {{ order.created }}</p>
+        <p><strong>Adres:</strong> {{ order.address }}, {{ order.city }}, {{ order.postal_code }}</p>
+
+        <h2>Sipariş Ürünleri:</h2>
+        {% for item in order.items.all %}
+            <div class="order-item">
+                {{ item.product.name }} - {{ item.quantity }} x ${{ item.price }} = ${{ item.quantity * item.price }}
+            </div>
+        {% empty %}
+            <p>Bu siparişte ürün bulunmamaktadır.</p>
+        {% endfor %}
+
+        <p class="total">Toplam: ${{ order.items.aggregate(total_price=Sum(F('price') * F('quantity')))['total_price'] }}</p>
+    </div>
+
+    <p>Saygılarımla,</p>
+    <p>Mağaza Ekibiniz</p>
+</body>
+</html>

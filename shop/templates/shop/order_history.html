@@ -1,0 +1,20 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Sipariş Geçmişi{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Sipariş Geçmişi</h1>
+    {% if orders %}
+        <ul class="list-group">
+            {% for order in orders %}
+            <li class="list-group-item">
+                <a href="{% url 'order_summary' order.id %}">Sipariş {{ order.id }} - {{ order.created_at|date:"d-m-Y H:i" }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Henüz siparişiniz yok.</p>
+    {% endif %}
+</div>
+{% endblock %}

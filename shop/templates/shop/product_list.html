@@ -1,0 +1,40 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Ürün Listesi{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>Ürün Listesi</h1>
+        <form method="get" action="">
+            <label for="category">Kategori:</label>
+            <select name="category" id="category">
+                <option value="">Tüm Kategoriler</option>
+                {% for category in categories %}
+                    <option value="{{ category.slug }}" {% if request.GET.category == category.slug %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Filtrele</button>
+        </form>
+        <ul class="list-group mt-3">
+            {% for product in products %}
+                <li class="list-group-item">
+                    <h2><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h2>
+                    <p>{{ product.description }}</p>
+                    <p>Fiyat: ${{ product.price }}</p>
+                    <form action="{% url 'add_to_cart' product.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success">Sepete Ekle</button>
+                    </form>
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="150" class="img-thumbnail mt-2">
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li class="list-group-item">Ürün mevcut değil.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

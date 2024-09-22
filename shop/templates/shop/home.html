@@ -1,0 +1,50 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Ana Sayfa{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <h1>HOŞGELDİNİZ</h1>       
+        <br>
+        <p style="color: aliceblue;">En yeni ve öne çıkan ürünlerimize aşağıdan göz atın.</p>
+
+        <br>
+        <h2 style="color: aliceblue;">En çok satanlar</h2>
+        <div class="row">
+            {% for product in featured_products %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="Karaca">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">${{ product.price }}</p>
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Detaylar</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Öne çıkan ürün bulunmamaktadır.</p>
+            {% endfor %}
+        </div>
+
+        <br>
+        <h2 style="color: aliceblue;">Yeni ürünler</h2>
+        <div class="row">
+            {% for product in new_products %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">${{ product.price }}</p>
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Detaylar</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Yeni ürün bulunmamaktadır.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

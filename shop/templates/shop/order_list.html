@@ -1,0 +1,25 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Sipariş Listesi{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Siparişleriniz</h1>
+    {% if orders %}
+        <ul class="list-group">
+            {% for order in orders %}
+            <li class="list-group-item">
+                <a href="{% url 'order_detail' order.id %}">Sipariş {{ order.id }} - {{ order.created|date:"d-m-Y H:i" }}</a>
+                {% if order.paid %}
+                    <span class="text-success">Ödeme Yapıldı</span>
+                {% else %}
+                    <span class="text-danger">Ödeme Yapılmadı</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Hiç siparişiniz yok.</p>
+    {% endif %}
+</div>
+{% endblock %}

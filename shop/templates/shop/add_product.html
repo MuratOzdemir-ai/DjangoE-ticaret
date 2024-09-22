@@ -1,0 +1,46 @@
+{% extends "shop/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h2>Ürün Ekle</h2>
+
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">Ürün Adı</label>
+        {{ form.name }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.description.id_for_label }}">Ürün Açıklaması</label>
+        {{ form.description }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.price.id_for_label }}">Fiyat</label>
+        {{ form.price }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.category.id_for_label }}">Kategori</label>
+        {{ form.category }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.image.id_for_label }}">Ürün Resmi</label>
+        {{ form.image }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ürün Ekle</button>
+</form>
+{% endblock %}

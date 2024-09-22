@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}İnceleme Ekle{% endblock %}
+
+{% block content %}
+<h1>{{ product.name }} için İnceleme Yazın</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary">İnceleme Gönder</button>
+</form>
+<a href="{% url 'product_detail' product.id %}">Ürüne Geri Dön</a>
+{% endblock %}

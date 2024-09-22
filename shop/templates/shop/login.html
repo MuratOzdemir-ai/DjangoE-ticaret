@@ -1,0 +1,27 @@
+{% extends 'shop/base.html' %}
+
+{% load static %}
+
+{% block title %}Giriş{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Giriş</h1>
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+        </form>
+        <div class="mt-3">
+            <a href="{% url 'password_reset' %}">Şifremi Unuttum?</a>
+        </div>
+        <div class="mt-3">
+            <p>Hesabınız yok mu? <a href="{% url 'signup' %}">Kayıt Olun</a></p>
+        </div>
+    </div>
+{% endblock %}

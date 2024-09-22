@@ -1,0 +1,19 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Sipariş Özeti{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Sipariş Özeti</h1>
+    <p>Sipariş ID: {{ order.id }}</p>
+    <p>Tarafından sipariş edildi: {{ order.user.username }}</p>
+    <p>Sipariş Tarihi: {{ order.created_at }}</p>
+    <p>Ürünler:</p>
+    <ul>
+        {% for item in order.items.all %}
+        <li>{{ item.product.name }} - {{ item.quantity }} x ${{ item.price }}</li>
+        {% endfor %}
+    </ul>
+    <p>Toplam: ${{ order.items.aggregate(total=models.Sum('price')) }} (Toplam: ${{ order.items.aggregate(total=models.Sum('price'))['total'] }})</p>
+</div>
+{% endblock %}

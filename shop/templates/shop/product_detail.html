@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block description %}{{ product.description|slice:":160" }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <p>Fiyat: ${{ product.price }}</p>
+
+    <h2>Yorumlar</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.user.username }}:</strong> 
+                {{ review.rating }} yıldız
+                <p>{{ review.comment }}</p>
+                <p><small>{{ review.created_at }}</small></p>
+            </li>
+        {% empty %}
+            <li>Henüz yorum yok.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Yorum Ekle</h2>
+    <a href="{% url 'add_review' product.id %}" class="btn btn-primary">Bir İnceleme Yazın</a>
+</div>
+{% endblock %}

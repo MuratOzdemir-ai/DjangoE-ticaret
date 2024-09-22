@@ -1,0 +1,277 @@
+/* Genel Stiller */ 
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-image: url('/static/images/pic.jpg'); 
+    background-size: cover;
+    background-position: 0 0;
+    animation: moveBackground 10s linear infinite;
+    background-attachment: fixed;
+    background-color: grey;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Header ve Footer */
+header, .header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+}
+
+footer, .footer {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    text-align: center;box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header, .footer {
+    background: #333;
+    color: #fff;
+}
+
+.header h1, .footer p {
+    margin: 0;
+}
+
+/* Navigasyon */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+nav ul li a:hover {
+    color: #0056b3;
+}
+
+/* Formlar */
+form {
+    margin: 20px 0;
+}
+
+form input, form button, form select, form textarea {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Butonlar */
+.btn, .btn-primary {
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: blue;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover, .btn-primary:hover {
+    background-color: black;
+}
+
+/* Kartlar */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-title {
+    font-size: 1.25em;
+    margin: 0;
+}
+
+.card-text {
+    font-size: 1em;
+    color: #666;
+}
+
+/* Sepet */
+.cart-items { 
+    list-style: none;
+    padding: 0;
+}
+
+.cart-item {
+    border-bottom: 1px solid #ddd;
+    padding: 1em 0;
+    transition: background-color 0.3s ease;
+}
+
+.cart-item:hover {
+    background-color: #f9f9f9;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item h4 {
+    margin: 0 0 0.5em;
+}
+
+.cart-item p {
+    margin: 0;
+}
+
+.cart-total {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: right;margin-top: 1em;
+    color: #007bff;
+    border-top: 2px solid #ddd;
+    padding-top: 1em;
+}
+
+.cart-icon {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+/*Ödeme Formu */
+.checkout-form { 
+    max-width: 600px;
+    margin: auto;
+}
+
+.checkout-form label {
+    display: block;
+    margin-bottom: 0.5em;font-weight: bold;
+}
+
+.checkout-form button {
+    font-size: 1.25em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.checkout-form button:active {
+    transform: scale(0.95);
+}
+
+/*Ürün Listesi */
+.product-list { 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    flex: 1 1 calc(33.333% - 2em);
+    margin: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-card h3 {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+.product-card p {
+    font-size: 1.25em;
+    color: #333;
+}
+
+/* Medya Sorguları */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    nav ul li {
+        display: block;
+        margin-right: 0;margin-bottom: 10px;
+    }
+
+    .cart-items {
+        padding: 0 1em;
+    }
+
+    .product-card {
+        flex: 1 1 calc(50% - 2em);
+    }
+}
+
+@media (max-width: 600px) {
+    .checkout-form {
+        padding: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-card {
+        flex: 1 1 100%;
+    }
+}

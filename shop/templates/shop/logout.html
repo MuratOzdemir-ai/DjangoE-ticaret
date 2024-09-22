@@ -1,0 +1,14 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Çıkış Yapıldı{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Çıkış Yapıldı</h1>
+        <p>Başarıyla çıkış yaptınız. Anasayfaya dönebilirsiniz.</p>
+        <p><a href="{% url 'home' %}">Anasayfaya Git</a></p>
+        <p>Yeniden giriş yapmak isterseniz, <a href="{% url 'login' %}">buraya tıklayın</a>.</p>
+    </div>
+{% endblock %}
+

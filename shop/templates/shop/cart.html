@@ -1,0 +1,37 @@
+{% extends "shop/base.html" %}
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="color: aliceblue;">
+    <h1>Alışveriş Sepeti</h1>
+    {% if cart_items %}
+        <table class="table" style="color: aliceblue;">
+            <thead>
+                <tr>
+                    <th>Ürün</th>
+                    <th>Miktar</th>
+                    <th>Fiyat</th>
+                    <th>Toplam</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.product.price }}</td>
+                    <td>${{ item.get_total_item_price|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3 class="text-right" style="color: black;">Toplam: ${{ total_price|floatformat:2 }}</h3>
+        <div class="text-right">
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Siparişi Ver</a>
+        </div>
+    {% else %}
+        <p>Sepetiniz boş.</p>
+    {% endif %}
+</div>
+{% endblock %}

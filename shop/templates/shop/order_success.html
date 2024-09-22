@@ -1,0 +1,11 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Sipariş Başarılı{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Siparişiniz için teşekkür ederiz!</h1>
+    <p>Siparişiniz başarıyla verilmiştir. Kısa süre içinde bir onay e-postası alacaksınız.</p>
+    <p>Başka bir işlem yapmak isterseniz, <a href="{% url 'home' %}">anasayfaya</a> dönebilirsiniz.</p>
+</div>
+{% endblock %}

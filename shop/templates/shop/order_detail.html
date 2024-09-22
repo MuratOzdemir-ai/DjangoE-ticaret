@@ -1,0 +1,53 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Sipariş Detayı{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sipariş Detayı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .order-details {
+            margin-top: 20px;
+        }
+        .order-item {
+            margin: 5px 0;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sipariş {{ order.id }}</h1>
+    <p><strong>Tarih:</strong> {{ order.created }}</p>
+    <p><strong>Adres:</strong> {{ order.address }}, {{ order.city }}, {{ order.postal_code }}</p>
+    
+    <h2>Sipariş Ürünleri</h2>
+    <ul>
+        {% for item in order.items.all %}
+            <li class="order-item">
+                {{ item.product.name }} - {{ item.quantity }} x ${{ item.price }} = ${{ item.quantity * item.price }}
+            </li>
+        {% empty %}
+            <li>Bu siparişte ürün bulunmamaktadır.</li>
+        {% endfor %}
+    </ul>
+    
+    <p class="total">Toplam: ${{ order.items.aggregate(total_price=Sum(F('price') * F('quantity')))['total_price'] }}</p>
+</body>
+</html>
+{% endblock %}
